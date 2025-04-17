@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Noto-serif';
+    background-color:  rgb(45, 39, 78);
+}
+header{
+    background-color: rgb(158, 201, 238);
+    text-align: center;
+    background-image: url(cross.png);
+    color:   rgba(131, 126, 126, 0.949);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 50px;
+    z-index: 999;
+    line-height: 50px;
+}
+
+section{
+    margin-top: 100px;
+}
+
+#score-board{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3.5em ;
+    border: 5px solid rgb(205, 230, 255);
+    color: rgb(205, 230, 255);
+    border-radius: 25px;
+    width: 200px;
+    height: 120px;
+    padding: 15px 20px;
+    text-align: center;
+    position: relative;
+}
+#comp{
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    top:80px;
+    left: 122px;
+}
+#user{
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    top: 80px;
+    left: -px;
+}
+.badge{
+    padding: 2px 10px;
+    background-color: aquamarine;
+    color: whitesmoke;
+}
+
+.image{
+    width: 65px;
+    margin: 15px;
+}
+button:hover{
+    opacity: 0.7;
+    background-color: white;
+    cursor: pointer;
+}
+button{
+    border: 3px solid black;
+    border-radius: 120px;
+    margin: 20px;
+    background-color: rgb(205, 230, 255);
+}
+
+#choices{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+#result{
+    margin-top: 30px;
+    font-size: 4em;
+    text-align: center;
+    color: whitesmoke;
+    display: none;
+}
+h2{
+    text-align: center;
+    font-size: 3.5em;
+    color: rgb(205, 230, 255);
+    display: none;
+}
+#comp-choices{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap:20px;
+}
+#rock-comp{
+    display: none;
+}
+#paper-comp{
+    display: none;
+}
+#scissor-comp{
+    display: none;
+}

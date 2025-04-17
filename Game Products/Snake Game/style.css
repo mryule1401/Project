@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(241, 227, 176);
+}
+.score{
+    display: flex;
+    justify-content: center;
+    gap: 30%
+}
+.game-border-1{
+    grid-template-columns: repeat(30,20px);
+    grid-template-rows: repeat(30,20px);
+}

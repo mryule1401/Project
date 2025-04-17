@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Serif">
+    <title>Games</title>
+</head>
+<body>
+    <header>
+        <h1>Rock, Paper, Scissors</h1>
+    </header>
+    <section>
+        <div id="score-board">
+            <div id="comp" class="badge">comp</div>
+            <div id="user" class="badge">user</div>
+            <span id="player-result">0</span>:<span id="comp-result">0</span>
+        </div>
+        <div id="result"> You Win!</div>
+        <div id="choices">
+            <button id="rock-choice" type="button" value="bua" onclick="rockIcon()"> <img class="image" type="image" src="fist.png" alt="ROCK"></button>
+                <button id="paper-choice" type="button" value="keo" onclick="paperIcon()"> <img class="image" type="image" src="hand-paper.png" alt="paper"></button>
+                <button id="scissor-choice" type="button" value="bao" onclick="scissorIcon()"> <img class="image" type="image" src="scissors.png" alt="scissor"></button>
+        </div>
+        <h2>Computer:</h2>
+        <div id="comp-choices">
+            <button id="rock-comp" type="button"  onclick=""> <img class="image" type="image" src="fist.png" alt="ROCK"></button>
+            <button id="paper-comp" type="button" onclick=""> <img class="image" type="image" src="hand-paper.png" alt="paper"></button>
+            <button id="scissor-comp" type="button" onclick=""> <img class="image" type="image" src="scissors.png" alt="scissor"></button>
+        </div>
+    </section>
+    <script src="app.js"></script>
+</body>
+</html>
