@@ -38,15 +38,16 @@ body{
 }
 #instruction-text{
     position: absolute;
-    top: 70%;
+    top: 78%;
     left: 50%;
     color: rgb(109, 101, 101);
     width: 300px;
     text-align: center;
     text-transform: capitalize;
+    transform: translate(-50%, -50%);
     padding: 30px;
     margin: 0px;
-    z-index: 2;
+    /* z-index: 2; */
     
 }
 
@@ -64,11 +65,19 @@ body{
     width: 300px;
     height: auto;
     transform: translate(-50%, -50%);
-    opacity: 0.7;
-    z-index: 2;
+    /* opacity: 0.7; */
+    /* z-index: 2; */
 }
 .game-border-3, 
 .begin-background{
     background-color: bisque;
 
+}
+.snake{
+    background-color: rgb(29, 203, 29);
+    border: 5px dotted rgb(1, 114, 1);
+}
+.food{
+    background-color: red;
+    border: 5px solid rgb(176, 3, 3);
 }
