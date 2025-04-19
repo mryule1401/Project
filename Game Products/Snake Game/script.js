@@ -1,7 +1,7 @@
 const board = document.getElementById('game-board');
 console.log(board)
 //define game variables
-gridSize = 25
+const gridSize = 25
 let snake = [{ x:13  , y: 13}];
 let food = generatefood();
 let gameStarted = false
@@ -13,15 +13,18 @@ function draw(){
     board.innerHTML = '';
     drawSnake();
     drawFood();
+    updateScore();
 }
 
 //Draw snake
 function drawSnake(){
-    snake.forEach((segment) => {
-        const snakeElement = createGameElement('div','snake');
-        setPosition(snakeElement,segment)
-        board.appendChild(snakeElement)
-    });
+    if (gameStarted){
+        snake.forEach((segment) => {
+            const snakeElement = createGameElement('div','snake');
+            setPosition(snakeElement,segment)
+            board.appendChild(snakeElement)
+        });
+    }
 }
 
 //Create a snake or food cube/div
@@ -41,8 +44,9 @@ const beginBackground = document.getElementById('begin-background')
 function startGame(){
     gameStarted = true;
     beginBackground.style.display ='none';
-    gameInterval=setInterval(()=>{
+    gameInterval=setInterval(() => {
         moving();
+        checkCollision()
         draw();
     },gameSpeedDelay)
 }
@@ -84,10 +88,12 @@ function handleKeyPress(event){
 document.addEventListener('keydown',handleKeyPress)
 //making food
 function drawFood(){
-    const foodElement = createGameElement('div', 'food');
-    setPosition(foodElement, food);
-    board.appendChild(foodElement);
-}
+    if (gameStarted){
+        const foodElement = createGameElement('div', 'food');
+        setPosition(foodElement, food);
+        board.appendChild(foodElement);
+    }
+    }
 
 //generating food location
 function generatefood(){
@@ -118,9 +124,11 @@ function moving(){
     // snake.pop();
     if (head.x==food.x && head.y == food.y){
         food = generatefood();
-        clearInterval();
+        increaseSpeed();
+        clearInterval(gameInterval);
         gameInterval = setInterval(()=>{
             moving();
+            checkCollision();
             draw();
         },gameSpeedDelay);
     } else {
@@ -128,3 +136,65 @@ function moving(){
     }
 }
 
+function increaseSpeed(){
+    if (gameSpeedDelay > 150){
+        gameSpeedDelay-=5;
+    }
+    else if (gameSpeedDelay >100 && gameSpeedDelay<150){
+        gameSpeedDelay -=3
+    }
+    else if (gameSpeedDelay >50 && gameSpeedDelay<100){
+        gameSpeedDelay -=2
+    }
+    else if (gameSpeedDelay >25 && gameSpeedDelay<50){
+        gameSpeedDelay -=1
+    }
+}
+
+function checkCollision(){
+    const head = snake[0];
+
+    if(head.x <1|| head.x > gridSize || head.y < 1 || head.y >gridSize){
+        resetGame();
+    }
+
+    for (let i = 1; i < snake.length; i++){
+        if (head.x == snake[i].x && head.y == snake[i].y){
+            resetGame();
+        }
+    }
+}
+function resetGame(){
+    updateHighScore();
+    gameOver();
+    snake = [{x:13,y:13}];
+    food = generatefood();
+    direction = 'right';
+    gameSpeedDelay = 200
+    updateScore();
+}
+
+function gameOver() {
+    clearInterval(gameInterval);
+    gameStarted = false;
+    beginBackground.style.display = 'block';
+    alert(`Game Over! Score: ${snake.length - 1}.`);
+}
+
+const score = document.getElementById('score')
+function updateScore(){
+    const currentScore = snake.length -1;
+    score.textContent = currentScore.toString().padStart(3,'0');
+}
+
+const highScoreText = document.getElementById('highest-score');
+console.log(highScoreText)
+let highScore = 0;
+function updateHighScore(){
+    const currentScore =snake.length - 1;
+    if (currentScore > highScore){
+        highScore =currentScore;
+        highScoreText.textContent = highScore.toString().padStart(3,'0');
+    }
+    highScoreText.style.visibility ='visible'
+}
